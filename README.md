@@ -1,129 +1,133 @@
-# 📅 Sistema de Gerenciamento de Eventos
+# 🔥 Sistema de Gerenciamento de Eventos - Spring Boot Edition
 
-Sistema web desenvolvido com **Spring Boot** para gestão de **eventos** e **participantes**, com controle de vagas, inscrições e cancelamentos. A aplicação conta com CRUD completo para eventos e participantes, além de um relacionamento muitos-para-muitos entre essas entidades.
+Bem-vindo ao sistema definitivo de **gestão de eventos**, desenvolvido com **Java 21 + Spring Boot**!  
+Aqui, você pode **criar eventos épicos**, **cadastrar participantes** e **gerenciar inscrições com controle de vagas**. Tudo isso com uma arquitetura sólida, endpoints bem definidos e um time afiado por trás! ⚡
 
 ---
 
-## 🚀 Funcionalidades Mínimas
+## 🚀 Funcionalidades de Outro Nível
 
 ### 📌 Eventos
-- ✅ Criar evento (nome, descrição, data, local, vagas)
-- ✅ Listar eventos disponíveis
-- ✅ Atualizar dados do evento
-- ✅ Excluir evento
+- ✅ Criar evento com: nome, descrição, data, local e número de vagas
+- ✅ Listar eventos disponíveis (com filtro por data e vagas disponíveis)
+- ✅ Atualizar qualquer dado do evento
+- ✅ Excluir evento com segurança
 
-### 🚀 Funcionalidade
-- ✅ Cadastrar participante (nome, e-mail, telefone)
-- ✅ Inscrever em evento (com verificação de vagas)
-- ✅ Cancelar inscrição
-- ✅ Listar participantes de um evento
+### 🙋 Participantes
+- ✅ Cadastrar novo participante (nome, e-mail e telefone)
+- ✅ Inscrição em evento (com **verificação automática de vagas**)
+- ✅ Cancelamento de inscrição (libera a vaga automaticamente)
+- ✅ Listagem de participantes por evento
 
-### 🔗 Relacionamentos
-- Um **evento** pode ter **vários participantes**
-- Um **participante** pode se inscrever em **vários eventos**
-
----
-
-## 🧱 Arquitetura e Tecnologias
-
-- Java 21
-- Spring Boot
-- Maven
-- JPA/Hibernate
-- Banco de dados MySql
-- Postman (para testes de API)
-- Git & GitHub
+### 🔗 Relacionamentos Poderosos
+- 🔁 Um evento comporta **vários participantes**
+- 🔁 Um participante pode se inscrever em **diversos eventos**
 
 ---
 
-## 🛠️ Configuração do Projeto
+## 🧱 Stack de Tecnologias
+
+- 💻 Java 21
+- ⚙️ Spring Boot
+- 📦 Maven
+- 🛠️ JPA + Hibernate
+- 🗃️ Banco de Dados: MySQL
+- 🔎 Postman para testes de API
+- 🌐 Git + GitHub para versionamento
+
+---
+
+## 🛠️ Como Rodar o Projeto Localmente
 
 ```bash
 # Clone o repositório
 git clone https://github.com/seu-usuario/eventos-app.git
 
-# Acesse a pasta
+# Entre na pasta do projeto
 cd eventos
 
-# Execute o projeto
+# Execute com Maven
 ./mvnw spring-boot:run
 ```
 
-A aplicação estará disponível em:  
-📍 `http://localhost:8080`
+🔗 Acesse em: [http://localhost:8080](http://localhost:8080)
 
 ---
 
-## 📁 Endpoints da API
+## 📁 Endpoints RESTful
 
 ### 🎯 Eventos
-| Método | Endpoint | Ação |
-|--------|----------|------|
-| POST   | `/eventos` | Criar evento |
-| GET    | `/eventos` | Listar eventos |
-| PUT    | `/eventos/{id}` | Atualizar evento |
-| DELETE | `/eventos/{id}` | Excluir evento |
-| POST   | `/eventos/{eventoId}/inscrever/{participanteId}` | Inscrição |
-| POST   | `/eventos/{eventoId}/cancelar/{participanteId}` | Cancelar inscrição |
-| GET    | `/eventos/{eventoId}/participantes` | Listar participantes |
+| Método | Rota | Descrição |
+|--------|------|------------|
+| POST | `/eventos` | Criar novo evento |
+| GET | `/eventos` | Listar todos os eventos |
+| PUT | `/eventos/{id}` | Atualizar evento existente |
+| DELETE | `/eventos/{id}` | Remover evento |
+| POST | `/eventos/{eventoId}/inscrever/{participanteId}` | Inscrever participante |
+| POST | `/eventos/{eventoId}/cancelar/{participanteId}` | Cancelar inscrição |
+| GET | `/eventos/{eventoId}/participantes` | Ver todos os participantes de um evento |
 
 ### 🙋 Participantes
-| Método | Endpoint | Ação |
-|--------|----------|------|
-| POST   | `/participantes` | Cadastrar participante |
-| GET    | `/participantes` | Listar todos os participantes |
+| Método | Rota | Descrição |
+|--------|------|------------|
+| POST | `/participantes` | Cadastrar novo participante |
+| GET | `/participantes` | Listar todos os participantes |
 
 ---
 
-## 🔐 Regras de Negócio
+## 🔐 Regras de Ouro (Validações)
 
-- Um evento **não permite inscrições acima do número de vagas**.
-- Ao cancelar uma inscrição, a vaga é liberada.
-- Participantes **não são duplicados** em eventos.
-- Eventos e participantes são armazenados com chave primária `id` gerada automaticamente.
-
----
-
-## 👨‍👩‍👧‍👦 Time de Desenvolvimento
-
-| Nome     | Responsabilidades |
-|----------|--------------------|
-| **Yago**     | Configuração do projeto, entidades e relacionamentos |
-| **Leticia**  | Repository, Service e lógica de controle de vagas |
-| **Nycolas**  | Controllers e testes com Postman |
-| **Nicolas**  | Organização do repositório, README.md e histórico de commits |
+- ❌ Não é possível ultrapassar o número de vagas de um evento
+- ✅ Cancelamentos devolvem as vagas automaticamente
+- 🔁 Um mesmo participante **não pode se inscrever duas vezes** no mesmo evento
+- 🆔 IDs são gerados automaticamente
 
 ---
 
-## 🔄 Histórico de Commits e Colaboração
+## 👥 Time Monstruoso de Devs
 
-✅ Commits organizados com mensagens claras  
-✅ Branches bem definidas (ex: `feature/controller`, `fix/validacao-inscricao`)  
-✅ Divisão de tarefas bem distribuída entre os membros  
-✅ Acompanhamento contínuo das entregas e testes com Postman
+| Dev        | Responsabilidades |
+|------------|-------------------|
+| **Yago**    | Modelagem, entidades, relacionamentos |
+| **Leticia** | Camada Service + lógica de vagas |
+| **Nycolas** | Controllers e testes com Postman |
+| **Nicolas** | Organização do repositório e README boladão |
 
 ---
 
-## 🧪 Testes
+## 📊 Histórico de Colaboração
 
-Utilizamos o **Postman** para testar todos os endpoints de forma manual.
+- 🔄 Commits com mensagens claras e padronizadas
+- 🌿 Branches organizadas por funcionalidade
+- 📌 Issues e tarefas distribuídas de forma colaborativa
+- ✅ Revisões em grupo e testes manuais via Postman
 
-> ⚠️ Os testes automáticos ainda não foram implementados, mas os endpoints foram todos validados com entradas reais, incluindo cenários de erro (ex: exceder vagas, ID inexistente).
+---
+
+## 🧪 Testes 100% Realizados
+
+Testamos todos os fluxos principais no **Postman**, incluindo:
+- Cenários de sucesso
+- Casos de erro (vagas excedidas, IDs inválidos, etc.)
+
+> ⚠️ Testes automatizados ainda não foram implementados, mas os testes manuais garantiram a qualidade das rotas.
 
 ---
 
 ## 📄 Licença
 
-Este projeto é **livre para fins educacionais**. Caso utilize, mencione os autores!
+Este projeto é **aberto para fins educacionais**. Se usar, por favor mencione a equipe ❤️
 
 ---
 
-## 🧠 Observações Finais
+## 💡 Considerações Finais
 
-Este projeto foi idealizado como uma forma de consolidar conhecimentos em:
-- Modelagem de relacionamentos entre entidades
-- Boas práticas REST
-- Estrutura de serviços e repositórios
-- Trabalho em equipe com versionamento no Git
+Este projeto nasceu com o objetivo de **aprender na prática** como criar:
+- APIs REST completas
+- Relacionamentos @ManyToMany com tabela intermediária
+- Camadas bem separadas (Controller, Service, Repository)
+- Um projeto colaborativo de verdade no GitHub
+
+> **Feito com dedicação, colaboração e vontade de aprender! 💪**
 
 ---
