@@ -83,6 +83,50 @@ O backend será iniciado em:
 | POST | `/participantes` | Cadastrar novo participante |
 | GET | `/participantes` | Listar todos os participantes |
 
+
+## 🧪 Dados de Teste
+
+### 👥 Participantes Cadastrados
+
+```json
+{
+  "nome": "Amanda Costa",
+  "email": "amanda.costa@email.com",
+  "telefone": "1199990001"
+}
+{
+  "nome": "Rafael Lima",
+  "email": "rafael.lima@email.com",
+  "telefone": "1199990002"
+}
+{
+  "nome": "Beatriz Nunes",
+  "email": "beatriz.nunes@email.com",
+  "telefone": "1199990003"
+}
+```
+
+### 🎯 Evento Atualizado
+
+```json
+{
+  "nome": "Workshop Atualizado",
+  "descricao": "Nova descrição",
+  "data": "2025-06-15",
+  "local": "Auditório Central",
+  "vagas": 2
+}
+```
+
+### 🔁 Testes de Inscrição e Validações
+
+| Ação | Endpoint | Resultado Esperado |
+|------|----------|--------------------|
+| Inscrever Amanda (ID 1) no evento (ID 1) | `/participantes/1/inscrever/1` | ✅ Sucesso |
+| Inscrever Rafael (ID 2) no evento (ID 1) | `/participantes/2/inscrever/1` | ✅ Sucesso |
+| Inscrição duplicada (Rafael novamente) | `/participantes/2/inscrever/1` | ❌ Falha: participante já inscrito |
+| Inscrição além do limite (Beatriz) | `/participantes/3/inscrever/1` | ❌ Falha: evento sem vagas |
+
 ---
 
 ## 📌 Regras de Negócio
