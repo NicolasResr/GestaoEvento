@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -11,6 +14,9 @@ import jakarta.persistence.Table;
 @Entity
 public class Participantes {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String nome;
 	private String email;
 	private String telefone;
@@ -22,11 +28,20 @@ public class Participantes {
 		
 	}
 
-	public Participantes(String nome, String email, String telefone, Set<Eventos> eventos) {
+	public Participantes(Long id, String nome, String email, String telefone, Set<Eventos> eventos) {
+		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
 		this.eventos = eventos;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {

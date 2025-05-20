@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -14,6 +17,9 @@ import jakarta.persistence.Table;
 @Entity
 public class Eventos {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String nome;
 	private String descricao;
 	private LocalDate data;
@@ -29,14 +35,25 @@ public class Eventos {
 		
 	}
 	
-	public Eventos(String nome, String descricao, LocalDate data, String local, int vagas,
+	public Eventos(Long id,String nome, String descricao, LocalDate data, String local, int vagas,
 			Set<Participantes> participantes) {
+		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.data = data;
 		this.local = local;
 		this.vagas = vagas;
 		this.participantes = participantes;
+	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
