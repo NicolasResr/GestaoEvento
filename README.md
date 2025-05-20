@@ -15,7 +15,7 @@ Aplicação web desenvolvida com **Java 21** e **Spring Boot**, com o objetivo d
 - Atualizar os dados de um evento
 - Excluir evento
 
-### 👥 Participantes
+### 👥 Ações
 - Cadastro de participante com nome, e-mail e telefone
 - Inscrição do participante em evento (com verificação de vagas disponíveis)
 - Cancelamento de inscrição
