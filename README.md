@@ -1,148 +1,156 @@
 
-🔥 Sistema de Gerenciamento de Eventos - Spring Boot Edition
+# 🔥 Sistema de Gerenciamento de Eventos
 
-Aplicação web desenvolvida com Java 21 + Spring Boot, com o objetivo de gerenciar eventos e participantes, possibilitando:
+Bem-vindo ao sistema de **gestão de eventos** desenvolvido com **Java 21 + Spring Boot**!  
+Com ele, é possível criar eventos, cadastrar participantes e controlar inscrições com verificação automática de vagas.
 
-- Criação, edição, exclusão e listagem de eventos
-- Inscrição e cancelamento com controle de vagas
-- Cadastro e listagem de participantes
+---
 
-✅ Funcionalidades
+## ✅ Funcionalidades
 
-📌 Eventos
+### 📌 Eventos
 - Criar evento com nome, descrição, data, local e número de vagas
-- Listar todos os eventos disponíveis (com possibilidade de filtros)
+- Listar todos os eventos
 - Atualizar dados de um evento
 - Excluir evento
 
-🙋 Participantes
-- Cadastrar novo participante (nome, e-mail e telefone)
+### 👥 Participantes
+- Cadastrar participante (nome, e-mail e telefone)
 - Inscrever participante em evento (com verificação de vagas)
-- Cancelar inscrição (libera vaga automaticamente)
+- Cancelar inscrição (libera a vaga)
 - Listar participantes de um evento
 
-🔗 Relacionamentos
-- Um evento pode ter vários participantes
+### 🔗 Relacionamentos
+- Um evento comporta vários participantes
 - Um participante pode estar em diversos eventos
 
-🧱 Tecnologias Utilizadas
+---
 
-- Java 21  
-- Spring Boot  
-- Maven  
-- Spring Data JPA + Hibernate  
-- MySQL  
-- Postman  
-- Git & GitHub  
+## 🧱 Tecnologias Utilizadas
 
-📁 Estrutura do Projeto
+- Java 21
+- Spring Boot
+- Maven
+- Spring Data JPA + Hibernate
+- MySQL
+- Postman (testes manuais)
+- Git & GitHub
 
-- model: entidades Evento e Participante
-- repository: interfaces JPA
-- service: regras de negócio, como verificação de vagas
-- controller: endpoints RESTful
-- dto: objetos de transferência de dados (se necessário)
+---
 
-🛠️ Como Executar
+## 📁 Estrutura do Projeto
 
+src/
+├── model         # Entidades: Evento, Participante  
+├── repository    # Interfaces JPA  
+├── service       # Regras de negócio  
+├── controller    # Endpoints RESTful  
+├── dto           # Data Transfer Objects (opcional)  
+
+---
+
+## 🚀 Como Executar o Projeto
+
+```bash
 git clone https://github.com/seu-usuario/eventos-app.git
 cd eventos-app
 ./mvnw spring-boot:run
+```
 
-Acesse: http://localhost:8080
+🔗 Acesse: [http://localhost:8080](http://localhost:8080)
 
-🌐 Endpoints
+---
 
-🎯 Eventos
+## 🌐 Endpoints Principais
 
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| POST   | /eventos | Criar novo evento |
-| GET    | /eventos | Listar todos os eventos |
-| PUT    | /eventos/{id} | Atualizar evento |
-| DELETE | /eventos/{id} | Remover evento |
-| POST   | /eventos/{eventoId}/inscrever/{participanteId} | Inscrever participante |
-| POST   | /eventos/{eventoId}/cancelar/{participanteId} | Cancelar inscrição |
-| GET    | /eventos/{eventoId}/participantes | Ver participantes do evento |
+### Eventos
 
-🙋 Participantes
+| Método | Rota                                             | Descrição                   |
+| ------ | ------------------------------------------------ | --------------------------- |
+| POST   | `/eventos`                                       | Criar novo evento           |
+| GET    | `/eventos`                                       | Listar eventos              |
+| PUT    | `/eventos/{id}`                                  | Atualizar evento            |
+| DELETE | `/eventos/{id}`                                  | Remover evento              |
+| POST   | `/eventos/{eventoId}/inscrever/{participanteId}` | Inscrever participante      |
+| POST   | `/eventos/{eventoId}/cancelar/{participanteId}`  | Cancelar inscrição          |
+| GET    | `/eventos/{eventoId}/participantes`              | Ver participantes do evento |
 
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| POST   | /participantes | Cadastrar participante |
-| GET    | /participantes | Listar todos os participantes |
+### Participantes
 
-📌 Regras de Negócio
+| Método | Rota             | Descrição              |
+| ------ | ---------------- | ---------------------- |
+| POST   | `/participantes` | Cadastrar participante |
+| GET    | `/participantes` | Listar participantes   |
 
-- Inscrições respeitam o número de vagas disponíveis
-- Cancelamento de inscrição libera a vaga automaticamente
-- Um participante não pode se inscrever mais de uma vez no mesmo evento
+---
 
-🧪 Testes Manuais (Postman)
+## 🧪 Dados de Teste
 
-Participantes de Teste
+### Participantes
 
-{
-  "nome": "Amanda Costa",
-  "email": "amanda.costa@email.com",
-  "telefone": "1199990001"
-}
-{
-  "nome": "Rafael Lima",
-  "email": "rafael.lima@email.com",
-  "telefone": "1199990002"
-}
-{
-  "nome": "Beatriz Nunes",
-  "email": "beatriz.nunes@email.com",
-  "telefone": "1199990003"
-}
+```json
+{ "nome": "Amanda Costa", "email": "amanda@email.com", "telefone": "1199990001" }
+{ "nome": "Rafael Lima", "email": "rafael@email.com", "telefone": "1199990002" }
+{ "nome": "Beatriz Nunes", "email": "beatriz@email.com", "telefone": "1199990003" }
+```
 
-Evento de Teste
+### Evento
 
-{
-  "nome": "Workshop Atualizado",
-  "descricao": "Nova descrição",
-  "data": "2025-06-15",
-  "local": "Auditório Central",
-  "vagas": 2
-}
+```json
+{ "nome": "Workshop", "descricao": "Nova descrição", "data": "2025-06-15", "local": "Auditório Central", "vagas": 2 }
+```
 
-Casos de Teste
+### Testes
 
-| Ação | Endpoint | Resultado |
-|------|----------|-----------|
-| Inscrição de Amanda | /eventos/1/inscrever/1 | ✅ Sucesso |
-| Inscrição de Rafael | /eventos/1/inscrever/2 | ✅ Sucesso |
-| Rafael tenta se inscrever novamente | /eventos/1/inscrever/2 | ❌ Já inscrito |
-| Beatriz tenta inscrição (sem vaga) | /eventos/1/inscrever/3 | ❌ Sem vagas |
+| Ação                       | Endpoint                       | Resultado Esperado |
+| -------------------------- | ------------------------------ | ------------------ |
+| Inscrição Amanda (ID 1)    | `/participantes/1/inscrever/1` | ✅ Sucesso          |
+| Inscrição Rafael (ID 2)    | `/participantes/2/inscrever/1` | ✅ Sucesso          |
+| Inscrição duplicada Rafael | `/participantes/2/inscrever/1` | ❌ Já inscrito      |
+| Evento lotado (Beatriz)    | `/participantes/3/inscrever/1` | ❌ Sem vagas        |
 
-👥 Time de Desenvolvimento
+---
 
-| Nome     | Responsável por |
-|----------|-----------------|
-| Yago     | Modelagem e entidades |
-| Leticia  | Regras de negócio e camada service |
-| Nycolas  | Controllers e testes manuais |
-| Nicolas  | Organização e documentação do projeto |
+## 📌 Regras de Negócio
 
-📊 Controle de Versão
+* Número de vagas é respeitado rigorosamente
+* Cancelamento de inscrição libera a vaga
+* Participantes não podem se inscrever mais de uma vez no mesmo evento
 
-- Commits descritivos e padronizados
-- Branches por funcionalidade
-- Organização e revisão contínua no GitHub
+---
 
-📄 Licença
+## 👨‍💻 Equipe
 
-Projeto de uso educacional. Sinta-se livre para reutilizar com os devidos créditos à equipe.
+| Nome    | Tarefa                                    |
+| ------- | ----------------------------------------- |
+| Yago    | Modelagem e entidades                     |
+| Leticia | Serviços e regras de negócio              |
+| Nycolas | Controllers e testes com Postman          |
+| Nicolas | Organização do repositório e documentação |
 
-💡 Considerações Finais
+---
 
-Este projeto nasceu com o propósito de praticar o desenvolvimento de APIs REST, com foco em:
+## 📊 Controle de Versão
 
-- Relacionamentos com JPA e Hibernate
-- Boas práticas de código e arquitetura
-- Trabalho colaborativo em equipe
-- Testes reais com Postman
+* Commits descritivos e padronizados
+* Branches por funcionalidade
+* Organização via GitHub
 
-Feito com dedicação, foco e aprendizado contínuo! 🚀
+---
+
+## 📄 Licença
+
+Projeto de uso **educacional**. Pode ser reutilizado com os devidos créditos à equipe.
+
+---
+
+## 💡 Considerações Finais
+
+Este projeto ensina, na prática, como:
+
+* Criar APIs REST completas
+* Usar relacionamentos @ManyToMany
+* Separar bem camadas (Controller, Service, Repository)
+* Trabalhar em equipe com Git e GitHub
+
+> Feito com 💚 e vontade de aprender!
