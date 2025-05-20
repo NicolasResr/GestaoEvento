@@ -12,7 +12,7 @@ Sistema web desenvolvido com **Spring Boot** para gestão de **eventos** e **par
 - ✅ Atualizar dados do evento
 - ✅ Excluir evento
 
-### 🙋 Participantes
+### 🚀 Funcionalidade
 - ✅ Cadastrar participante (nome, e-mail, telefone)
 - ✅ Inscrever em evento (com verificação de vagas)
 - ✅ Cancelar inscrição
@@ -30,7 +30,7 @@ Sistema web desenvolvido com **Spring Boot** para gestão de **eventos** e **par
 - Spring Boot
 - Maven
 - JPA/Hibernate
-- Banco de dados H2 (em memória)
+- Banco de dados MySql
 - Postman (para testes de API)
 - Git & GitHub
 
@@ -43,7 +43,7 @@ Sistema web desenvolvido com **Spring Boot** para gestão de **eventos** e **par
 git clone https://github.com/seu-usuario/eventos-app.git
 
 # Acesse a pasta
-cd eventos-app
+cd eventos
 
 # Execute o projeto
 ./mvnw spring-boot:run
